@@ -1,15 +1,13 @@
 {
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ],
+    "java.project.referencedLibraries": ["lib/**/*.jar"],
     "[java]": {
         "editor.defaultFormatter": "redhat.java",
         "editor.insertSpaces": true,
         "editor.detectIndentation": false,
-        "editor.tabSize": 3
+        "editor.tabSize": 3,
+        "editor.formatOnSave": true
     },
-    "editor.formatOnSave": true,
     "java.format.settings.url": ".vscode/eclipse-formatter.xml"
 }
