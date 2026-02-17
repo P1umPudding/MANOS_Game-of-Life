@@ -2,25 +2,21 @@ import processing.core.*;
 
 public class Main extends PApplet {
 
-    // ---- settings (size goes here) ----
-    public void settings() {
-        size(800, 600);
-    }
+   public void settings() {
+      size(800, 600);
+   }
 
-    // ---- runs once at startup ----
-    public void setup() {
-        background(0);
-    }
+   public void setup() {
+      Ball.init(this);
+   }
 
-    // ---- runs every frame ----
-    public void draw() {
-        background(128);
-        fill(255);
-        ellipse(mouseX, mouseY, 50, 50);
-    }
+   public void draw() {
+      background(0);
+      Ball.update();
+      Ball.draw();
+   }
 
-    // ---- entry point ----
-    public static void main(String[] args) {
-        PApplet.main("Main");
-    }
+   public static void main(String[] args) {
+      PApplet.main("Main");
+   }
 }
