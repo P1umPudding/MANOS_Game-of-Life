@@ -7,3 +7,7 @@ Conway's Game of Life built with [Processing](https://processing.org/) in Java.
 Requires Java 17+ and the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) in VS Code.
 
 Open the project folder in VS Code and press **F5** to run.
+
+## Other
+
+  <img src="Plan/regeln.png" alt="alt text" style="width:400px;">
