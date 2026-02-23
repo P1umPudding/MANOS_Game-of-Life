@@ -9,13 +9,27 @@ public class Main extends PApplet {
 
    }
 
+   int[] cubeColor = { 0, 102, 0 };
+   int[] strokeColor = { 64, 64, 64 };
+   int[] backgroundColor = { 0, 51, 0 };
+
    int breite = 10;
-   boolean[][] Gitter = new boolean[width][height];
+   boolean[][] gitter = new boolean[width][height];
 
    public void setup() {
+      fülleGitterMitSeed(gitter, 1999999999);
+   }
 
-      Gitter[3][2] = true;
-
+   void fülleGitterMitSeed(boolean[][] gitter, int seed) {
+      for (int y = 0; y < gitter.length; y++) {
+         for (int x = 0; x < gitter[y].length; x++) {
+            // pseudo-random, deterministisch, basierend auf Seed
+            long val = x * 341873128712L + y * 132897987541L + seed;
+            val = (val ^ (val >> 13)) * 1274126177L; // einfache Hash-Mischung
+            val = val ^ (val >> 16);
+            gitter[y][x] = (val & 1) == 0; // true/false deterministisch
+         }
+      }
    }
 
    public void draw() {
@@ -23,87 +37,85 @@ public class Main extends PApplet {
 
       updateRaster();
 
-      Rules();
+      rules();
 
       delay(200);
    }
 
-   int xr = 0;
-   int xa = 0;
-   int yr = 0;
-   int ya = 0;
+   int xReduction = 0;
+   int xAddition = 0;
+   int yReduction = 0;
+   int yAddition = 0;
 
-   void RandCheck(int x, int y) {
+   void randCheck(int x, int y) {
 
       if (x == 0)
-         xr = 0;
+         xReduction = 0;
       else
-         xr = 1;
+         xReduction = 1;
 
-      if (x == Gitter.length - 1)
-         xa = 0;
+      if (x == gitter.length - 1)
+         xAddition = 0;
       else
-         xa = 1;
+         xAddition = 1;
 
       if (y == 0)
-         yr = 0;
+         yReduction = 0;
       else
-         yr = 1;
+         yReduction = 1;
 
-      if (y == Gitter.length - 1)
-         ya = 0;
+      if (y == gitter.length - 1)
+         yAddition = 0;
       else
-         ya = 1;
+         yAddition = 1;
    }
 
-   void Rules() {
+   void rules() {
 
-      boolean[][] Gitter2 = new boolean[width][height];
+      boolean[][] gitter2 = new boolean[width][height];
 
-      for (int x = 0; x < Gitter.length; x++) {
-         for (int y = 0; y < Gitter.length; y++) {
+      for (int x = 0; x < gitter.length; x++) {
+         for (int y = 0; y < gitter.length; y++) {
 
-            Gitter2[x][y] = Gitter[x][y];
+            gitter2[x][y] = gitter[x][y];
 
             int liveCount = 0;
-            RandCheck(x, y);
+            randCheck(x, y);
 
-            for (int xx = x - xr; xx <= x + xa; xx++) {
-               for (int yy = y - yr; yy <= y + ya; yy++) {
-                  if (Gitter[xx][yy] && (xx != x || yy != y))
+            for (int xx = x - xReduction; xx <= x + xAddition; xx++) {
+               for (int yy = y - yReduction; yy <= y + yAddition; yy++) {
+                  if (gitter[xx][yy] && (xx != x || yy != y))
                      liveCount++;
                }
             }
 
-            if (liveCount > 0)
-               println(liveCount);
-            if ((liveCount < 2 || liveCount > 3) && Gitter[x][y])
-               Gitter2[x][y] = false;
+            if ((liveCount < 2 || liveCount > 3) && gitter[x][y])
+               gitter2[x][y] = false;
 
-            if (liveCount == 3 && !Gitter[x][y])
-               Gitter2[x][y] = true;
+            if (liveCount == 3 && !gitter[x][y])
+               gitter2[x][y] = true;
 
          }
       }
 
-      for (int x = 0; x < Gitter.length; x++) {
-         for (int y = 0; y < Gitter.length; y++) {
-            Gitter[x][y] = Gitter2[x][y];
+      for (int x = 0; x < gitter.length; x++) {
+         for (int y = 0; y < gitter.length; y++) {
+            gitter[x][y] = gitter2[x][y];
          }
       }
 
    }
 
    void updateRaster() {
-      for (int x = 0; x < Gitter.length; x++) {
-         for (int y = 0; y < Gitter.length; y++) {
+      for (int x = 0; x < gitter.length; x++) {
+         for (int y = 0; y < gitter.length; y++) {
 
-            if (Gitter[x][y] == true)
-               fill(255);
+            if (gitter[x][y] == true)
+               fill(cubeColor[0], cubeColor[1], cubeColor[2]);
             else
-               fill(0);
+               fill(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
 
-            stroke(150);
+            stroke(strokeColor[0], strokeColor[1], strokeColor[2]);
             rect(x * breite, y * breite, breite, breite);
 
          }
