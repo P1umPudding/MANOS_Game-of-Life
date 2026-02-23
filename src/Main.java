@@ -127,3 +127,20 @@ public class Main extends PApplet {
    }
 
 }
+
+/*
+ * void currentState() {
+ * if (currentState == true) {
+ * background(50);
+ * updateRaster();
+ * Rules();
+ * delay(200);
+ * }
+ * if (currentState == false) {
+ * background(50);
+ * updateRaster();
+ * Rules();
+ * delay(20000000000000000);
+ * }
+ * }
+ */
