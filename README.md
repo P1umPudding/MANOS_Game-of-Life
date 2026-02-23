@@ -11,3 +11,4 @@ Open the project folder in VS Code and press **F5** to run.
 ## Other
 
   <img src="Plan/regeln.png" alt="alt text" style="width:400px;">
+
