@@ -3,28 +3,29 @@ import processing.core.*;
 public class Main extends PApplet {
 
    public void settings() {
-      size(400, 400);
+
+      fullScreen();
+      //size(800, 800);
 
    }
 
-   int breite = 20;
+   int breite = 10;
    boolean[][] Gitter = new boolean[width][height];
 
    public void setup() {
-      Gitter[1][0] = true;
+
+      Gitter[3][2] = true;
 
    }
 
    public void draw() {
       background(50);
 
-      Rule1();
-      Rule2();
-      Rule3();
-      Rule4();
-
       updateRaster();
-      delay(1);
+
+      Rules();
+
+      delay(200);
    }
 
    int xr = 0;
@@ -39,7 +40,7 @@ public class Main extends PApplet {
       else
          xr = 1;
 
-      if (x == Gitter.length)
+      if (x == Gitter.length - 1)
          xa = 0;
       else
          xa = 1;
@@ -49,97 +50,46 @@ public class Main extends PApplet {
       else
          yr = 1;
 
-      if (y == Gitter.length)
+      if (y == Gitter.length - 1)
          ya = 0;
       else
          ya = 1;
    }
 
-   void Rule1() {
+   void Rules() {
+
+      boolean[][] Gitter2 = new boolean[width][height];
+
       for (int x = 0; x < Gitter.length; x++) {
          for (int y = 0; y < Gitter.length; y++) {
+
+            Gitter2[x][y] = Gitter[x][y];
+
             int liveCount = 0;
             RandCheck(x, y);
 
-            if (Gitter[x][y]) {
-               for (int xx = x - xr; xx <= x + xa; xx++) {
-                  for (int yy = y - yr; yy <= y + ya; yy++) {
-                     if (Gitter[xx][yy])
-                        liveCount++;
-                  }
+            for (int xx = x - xr; xx <= x + xa; xx++) {
+               for (int yy = y - yr; yy <= y + ya; yy++) {
+                  if (Gitter[xx][yy] && (xx != x || yy != y))
+                     liveCount++;
                }
             }
-            if (liveCount < 3)
-               Gitter[x][y] = false;
+
+            if (liveCount > 0)
+               println(liveCount);
+            if ((liveCount < 2 || liveCount > 3) && Gitter[x][y])
+               Gitter2[x][y] = false;
+
+            if (liveCount == 3 && !Gitter[x][y])
+               Gitter2[x][y] = true;
+
          }
       }
-   }
 
-   void Rule2() {
       for (int x = 0; x < Gitter.length; x++) {
          for (int y = 0; y < Gitter.length; y++) {
-            int liveCount = 0;
-            RandCheck(x, y);
-            if (Gitter[x][y]) {
-               for (int xx = x - xr; xx <= x + xa; xx++) {
-                  for (int yy = y - yr; yy <= y + ya; yy++) {
-                     if (Gitter[xx][yy])
-                        liveCount++;
-
-                  }
-               }
-            }
-            if (liveCount == 3 || liveCount == 4)
-               Gitter[x][y] = true;
-
+            Gitter[x][y] = Gitter2[x][y];
          }
-
-      }
-
-   }
-
-   void Rule3() {
-      for (int x = 0; x < Gitter.length; x++) {
-         for (int y = 0; y < Gitter.length; y++) {
-            int liveCount = 0;
-            RandCheck(x, y);
-            if (Gitter[x][y]) {
-               for (int xx = x - xr; xx <= x + xa; xx++) {
-                  for (int yy = y - yr; yy <= y + ya; yy++) {
-                     if (Gitter[xx][yy])
-                        liveCount++;
-
-                  }
-               }
-            }
-            if (liveCount > 4)
-               Gitter[x][y] = false;
-
-         }
-
-      }
-
-   }
-
-   void Rule4() {
-      for (int x = 0; x < Gitter.length; x++) {
-         for (int y = 0; y < Gitter.length; y++) {
-            int liveCount = 0;
-            RandCheck(x, y);
-            if (Gitter[x][y]) {
-               for (int xx = x - xr; xx <= x + xa; xx++) {
-                  for (int yy = y - yr; yy <= y + ya; yy++) {
-                     if (Gitter[xx][yy])
-                        liveCount++;
-
-                  }
-               }
-            }
-            if (liveCount == 4)
-               Gitter[x][y] = true;
-
-         }
-
       }
 
    }
