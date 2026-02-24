@@ -13,7 +13,7 @@ public class Main extends PApplet {
    int[] strokeColor = { 64, 64, 64 };
    int[] backgroundColor = { 0, 51, 0 };
 
-   int breite = 3;
+   int breite = 10;
    boolean[][] gitter;
 
    public void setup() {
@@ -130,10 +130,9 @@ public class Main extends PApplet {
          background(50);
          updateRaster();
          rules();
-         delay(10);
       }
       if (currentState == false) {
-         background(50);
+
       }
    }
 
