@@ -1,6 +1,8 @@
 import processing.core.*;
 
-public class UILayout extends PApplet {
+public class UILayout {
+
+   Main p; // Referenz auf dein Hauptfenster
 
    int colorBg;
    int colorPanel;
@@ -9,36 +11,28 @@ public class UILayout extends PApplet {
    int colorTextWhite;
    int colorTextGrey;
 
-   public void settings() {
-      size(1200, 800);
+   // Konstruktor: Empfängt das Main-Applet
+   public UILayout(Main p) {
+      this.p = p;
    }
 
-   public void setup() {
-      colorBg = color(15, 15, 15);
-      colorPanel = color(35, 35, 35);
-      colorGreen = color(0, 200, 130);
-      colorCyan = color(0, 180, 220);
-      colorTextWhite = color(240);
-      colorTextGrey = color(150);
-   }
-
-   public void draw() {
-      background(colorBg);
-      uiElements();
-   }
-
-   public void uiElements() {
-      uiScreenshot1Cards();
-      uiScreenshot2ControlBar();
+   public void setupColors() {
+      colorBg = p.color(15, 15, 15);
+      colorPanel = p.color(35, 35, 35);
+      colorGreen = p.color(0, 200, 130);
+      colorCyan = p.color(0, 180, 220);
+      colorTextWhite = p.color(240);
+      colorTextGrey = p.color(150);
    }
 
    public void uiScreenshot1Cards() {
-      pushStyle();
+      p.pushStyle();
       float cardW = 300;
       float cardH = 160;
       float gap = 20;
-      float menuStartX = (width / 2) - cardW - gap / 2;
-      float menuStartY = (height / 2) - 50 - cardH - gap / 2;
+      // p.width und p.height anstatt width und height
+      float menuStartX = (p.width / 2) - cardW - gap / 2;
+      float menuStartY = (p.height / 2) - 50 - cardH - gap / 2;
 
       String[] titles = { "Zufälliger Seed", "Glider", "Pulsar", "Gosper Glider Gun" };
       String[] desc = {
@@ -54,86 +48,82 @@ public class UILayout extends PApplet {
          float cy = menuStartY + (i / 2) * (cardH + gap);
 
          if (active[i]) {
-            stroke(colorGreen);
-            strokeWeight(1.5f);
-            fill(20, 30, 25);
+            p.stroke(colorGreen);
+            p.strokeWeight(1.5f);
+            p.fill(20, 30, 25);
          } else {
-            stroke(50);
-            strokeWeight(1);
-            fill(colorPanel);
+            p.stroke(50);
+            p.strokeWeight(1);
+            p.fill(colorPanel);
          }
-         rect(cx, cy, cardW, cardH, 15);
+         p.rect(cx, cy, cardW, cardH, 15);
 
-         noStroke();
-         fill(active[i] ? colorGreen : colorCyan);
-         rect(cx + 20, cy + 20, 25, 25, 5);
-         fill(colorBg);
-         rect(cx + 25, cy + 25, 15, 15, 2);
+         p.noStroke();
+         p.fill(active[i] ? colorGreen : colorCyan);
+         p.rect(cx + 20, cy + 20, 25, 25, 5);
+         p.fill(colorBg);
+         p.rect(cx + 25, cy + 25, 15, 15, 2);
 
-         fill(colorTextWhite);
-         textSize(18);
-         textAlign(LEFT, TOP);
-         text(titles[i], cx + 20, cy + 70);
+         p.fill(colorTextWhite);
+         p.textSize(18);
+         p.textAlign(PApplet.LEFT, PApplet.TOP);
+         p.text(titles[i], cx + 20, cy + 70);
 
-         fill(colorTextGrey);
-         textSize(13);
-         textLeading(18);
-         text(desc[i], cx + 20, cy + 100);
+         p.fill(colorTextGrey);
+         p.textSize(13);
+         p.textLeading(18);
+         p.text(desc[i], cx + 20, cy + 100);
       }
-      popStyle();
+      p.popStyle();
    }
 
    public void uiScreenshot2ControlBar() {
-      pushStyle();
+      p.pushStyle();
       float barWidth = 700;
       float barHeight = 70;
-      float startX = (width / 2) - barWidth / 2;
-      float barY = height - 60;
+      float startX = (p.width / 2) - barWidth / 2;
+      float barY = p.height - 60;
 
-      fill(colorPanel);
-      noStroke();
-      rect(startX, barY - barHeight / 2, barWidth, barHeight, 35);
+      p.fill(colorPanel);
+      p.noStroke();
+      p.rect(startX, barY - barHeight / 2, barWidth, barHeight, 35);
 
-      fill(colorGreen);
-      ellipse(startX + 50, barY, 50, 50);
-      fill(10);
-      triangle(startX + 43, barY - 10, startX + 43, barY + 10, startX + 60, barY);
+      p.fill(colorGreen);
+      p.ellipse(startX + 50, barY, 50, 50);
+      p.fill(10);
+      p.triangle(startX + 43, barY - 10, startX + 43, barY + 10, startX + 60, barY);
 
-      fill(50);
-      ellipse(startX + 115, barY, 45, 45);
-      fill(colorTextWhite);
-      triangle(startX + 108, barY - 8, startX + 108, barY + 8, startX + 118, barY);
-      rect(startX + 120, barY - 8, 3, 16);
+      p.fill(50);
+      p.ellipse(startX + 115, barY, 45, 45);
+      p.fill(colorTextWhite);
+      p.triangle(startX + 108, barY - 8, startX + 108, barY + 8, startX + 118, barY);
+      p.rect(startX + 120, barY - 8, 3, 16);
 
-      stroke(70);
-      line(startX + 160, barY - 15, startX + 160, barY + 15);
+      p.stroke(70);
+      p.line(startX + 160, barY - 15, startX + 160, barY + 15);
 
-      noStroke();
-      fill(colorTextGrey);
-      textAlign(LEFT, CENTER);
-      textSize(11);
-      text("SPEED", startX + 180, barY - 12);
-      textAlign(RIGHT, CENTER);
-      text("100%", startX + 380, barY - 12);
+      p.noStroke();
+      p.fill(colorTextGrey);
+      p.textAlign(PApplet.LEFT, PApplet.CENTER);
+      p.textSize(11);
+      p.text("SPEED", startX + 180, barY - 12);
+      p.textAlign(PApplet.RIGHT, PApplet.CENTER);
+      p.text("100%", startX + 380, barY - 12);
 
-      fill(20);
-      rect(startX + 180, barY + 5, 200, 6, 3);
-      fill(colorGreen);
-      rect(startX + 180, barY + 5, 120, 6, 3);
-      ellipse(startX + 300, barY + 8, 16, 16);
+      p.fill(20);
+      p.rect(startX + 180, barY + 5, 200, 6, 3);
+      p.fill(colorGreen);
+      p.rect(startX + 180, barY + 5, 120, 6, 3);
+      p.ellipse(startX + 300, barY + 8, 16, 16);
 
       float btnX = startX + 440;
       for (int i = 0; i < 5; i++) {
-         fill(50);
-         noStroke();
-         ellipse(btnX + (i * 55), barY, 45, 45);
-         fill(colorTextWhite);
-         ellipse(btnX + (i * 55), barY, 5, 5);
+         p.fill(50);
+         p.noStroke();
+         p.ellipse(btnX + (i * 55), barY, 45, 45);
+         p.fill(colorTextWhite);
+         p.ellipse(btnX + (i * 55), barY, 5, 5);
       }
-      popStyle();
-   }
-
-   public static void main(String[] args) {
-      PApplet.main("UILayout");
+      p.popStyle();
    }
 }
