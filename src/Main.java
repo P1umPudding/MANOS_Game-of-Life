@@ -16,14 +16,12 @@ public class Main extends PApplet {
    int breite = 10;
    boolean[][] gitter;
 
+   int sizeMultiplyer = 2;
+
    public void setup() {
       frameRate(10);
-      gitter = new boolean[width / breite][height / breite];
-<<<<<<< HEAD
+      gitter = new boolean[width * sizeMultiplyer / breite][height * sizeMultiplyer / breite];
       fülleGitterMitSeed(gitter, 6767);
-=======
-      fülleGitterMitSeed(gitter, 696867);
->>>>>>> 7488c9fae5c33c3908c42cef5b9e3667e110efd2
 
    }
 
@@ -40,9 +38,11 @@ public class Main extends PApplet {
    }
 
    public void draw() {
+      move();
       addRect();
       currentState();
       uiElements();
+
    }
 
    int xReduction = 0;
@@ -150,6 +150,7 @@ public class Main extends PApplet {
    }
 
    public void keyPressed() {
+      clearGrid();
       if (keyPressed) {
          if (key == ' ') {
             if (pauseButton == true)
@@ -165,8 +166,8 @@ public class Main extends PApplet {
       if (mousePressed && (mouseButton == LEFT)) {
          for (int x = 0; x < gitter.length; x++) {
             for (int y = 0; y < gitter[0].length; y++) {
-               if (mouseX > x * breite && mouseX < x * breite + breite) {
-                  if (mouseY > y * breite && mouseY < y * breite + breite) {
+               if (mouseX + camX > x * breite && mouseX + camX < x * breite + breite) {
+                  if (mouseY + camY > y * breite && mouseY + camY < y * breite + breite) {
                      if (gitter[x][y]) {
                         gitter[x][y] = false;
                         delay(100);
@@ -182,6 +183,41 @@ public class Main extends PApplet {
             }
          }
       }
+
+   }
+
+   void clearGrid() {
+      if (keyPressed) {
+         if (key == 'r')
+            for (int x = 0; x < gitter.length; x++) {
+               for (int y = 0; y < gitter[0].length; y++) {
+                  gitter[x][y] = false;
+               }
+            }
+         delay(10);
+      }
+   }
+
+   float camX = 0;
+   float camY = 0;
+   float speed;
+
+   void move() {
+      speed = breite;
+      if (keyPressed) {
+         if (key == 'w')
+            camY -= speed;
+         if (key == 's')
+            camY += speed;
+         if (key == 'a')
+            camX -= speed;
+         if (key == 'd')
+            camX += speed;
+      }
+
+      translate(-camX, -camY);
+      background(0);
+      updateRaster();
 
    }
 
