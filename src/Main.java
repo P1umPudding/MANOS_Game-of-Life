@@ -19,7 +19,7 @@ public class Main extends PApplet {
    public void setup() {
       frameRate(100);
       gitter = new boolean[width / breite][height / breite];
-      fülleGitterMitSeed(gitter, 1234);
+      //fülleGitterMitSeed(gitter, 0);
 
    }
 
@@ -36,6 +36,7 @@ public class Main extends PApplet {
    }
 
    public void draw() {
+      addRect();
       currentState();
       uiElements();
    }
@@ -155,6 +156,30 @@ public class Main extends PApplet {
             println(pauseButton);
          }
       }
+   }
+
+   void addRect() {
+      if (mousePressed && (mouseButton == LEFT)) {
+         for (int x = 0; x < gitter.length; x++) {
+            for (int y = 0; y < gitter[0].length; y++) {
+               if (mouseX > x * breite && mouseX < x * breite + breite) {
+                  if (mouseY > y * breite && mouseY < y * breite + breite) {
+                     if (gitter[x][y]) {
+                        gitter[x][y] = false;
+                        delay(100);
+                     } else {
+
+                        gitter[x][y] = true;
+                        delay(100);
+
+                     }
+                     updateRaster();
+                  }
+               }
+            }
+         }
+      }
+
    }
 
 }
