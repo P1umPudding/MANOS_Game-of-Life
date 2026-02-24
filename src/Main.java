@@ -2,6 +2,9 @@ import processing.core.*;
 
 public class Main extends PApplet {
 
+   UILayout ui;
+   boolean uiState = false;
+
    public void settings() {
 
       fullScreen();
@@ -20,8 +23,10 @@ public class Main extends PApplet {
 
    public void setup() {
       frameRate(10);
-      gitter = new boolean[width * sizeMultiplyer / breite][height * sizeMultiplyer / breite];
-      fülleGitterMitSeed(gitter, 6767);
+      gitter = new boolean[width / breite][height / breite];
+      //fülleGitterMitSeed(gitter, 696867);
+      ui = new UILayout(this);
+      ui.setupColors();
 
    }
 
@@ -38,8 +43,11 @@ public class Main extends PApplet {
    }
 
    public void draw() {
-      move();
-      addRect();
+      if (!uiState) {
+         addRect();
+
+      }
+
       currentState();
       uiElements();
 
@@ -130,7 +138,6 @@ public class Main extends PApplet {
    }
 
    boolean pauseButton;
-   boolean uiState;
 
    void currentState() {
       if (pauseButton == true) {
@@ -141,11 +148,17 @@ public class Main extends PApplet {
       if (pauseButton == false) {
 
       }
+      if (!pauseButton && !uiState) {
+         rules();
+      }
    }
 
    void uiElements() {
-      if (uiState == true) {
+      if (uiState) {
+         fill(0, 180);
+         rect(0, 0, width, height);
 
+         ui.uiScreenshot1Cards();
       }
    }
 
@@ -159,6 +172,10 @@ public class Main extends PApplet {
                pauseButton = true;
             println(pauseButton);
          }
+      }
+      if (key == ESC) {
+         key = 0;
+         uiState = !uiState;
       }
    }
 
