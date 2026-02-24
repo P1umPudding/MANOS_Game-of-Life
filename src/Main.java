@@ -13,12 +13,14 @@ public class Main extends PApplet {
    int[] strokeColor = { 64, 64, 64 };
    int[] backgroundColor = { 0, 51, 0 };
 
-   int breite = 70;
-   boolean[][] gitter = new boolean[width / breite][height / breite];
+   int breite = 3;
+   boolean[][] gitter;
 
    public void setup() {
-      frameRate(1);
+      frameRate(100);
+      gitter = new boolean[width / breite][height / breite];
       fülleGitterMitSeed(gitter, 1234);
+
    }
 
    void fülleGitterMitSeed(boolean[][] gitter, int seed) {
@@ -65,7 +67,7 @@ public class Main extends PApplet {
       else
          yReduction = 1;
 
-      if (y == gitter.length - 1)
+      if (y == gitter[0].length - 1)
          yAddition = 0;
       else
          yAddition = 1;
@@ -76,7 +78,7 @@ public class Main extends PApplet {
       boolean[][] gitter2 = new boolean[width][height];
 
       for (int x = 0; x < gitter.length; x++) {
-         for (int y = 0; y < gitter.length; y++) {
+         for (int y = 0; y < gitter[0].length; y++) {
 
             gitter2[x][y] = gitter[x][y];
 
@@ -100,7 +102,7 @@ public class Main extends PApplet {
       }
 
       for (int x = 0; x < gitter.length; x++) {
-         for (int y = 0; y < gitter.length; y++) {
+         for (int y = 0; y < gitter[0].length; y++) {
             gitter[x][y] = gitter2[x][y];
          }
       }
@@ -109,7 +111,7 @@ public class Main extends PApplet {
 
    void updateRaster() {
       for (int x = 0; x < gitter.length; x++) {
-         for (int y = 0; y < gitter.length; y++) {
+         for (int y = 0; y < gitter[0].length; y++) {
 
             if (gitter[x][y] == true)
                fill(cubeColor[0], cubeColor[1], cubeColor[2]);
