@@ -144,12 +144,6 @@ public class Main extends PApplet {
       }
    }
 
-   void uiElements() {
-      if (uiState == true) {
-
-      }
-   }
-
    //@Override
    public void keyPressed() {
       if (keyPressed) {
