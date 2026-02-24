@@ -37,6 +37,7 @@ public class Main extends PApplet {
 
    public void draw() {
       currentState();
+      uiElements();
    }
 
    int xReduction = 0;
@@ -124,6 +125,7 @@ public class Main extends PApplet {
    }
 
    boolean pauseButton;
+   boolean uiState;
 
    void currentState() {
       if (pauseButton == true) {
@@ -132,6 +134,18 @@ public class Main extends PApplet {
          rules();
       }
       if (pauseButton == false) {
+
+      }
+   }
+
+   void uiElements() {
+      if (uiState == true) {
+
+      }
+   }
+
+   void uiElements() {
+      if (uiState == true) {
 
       }
    }
@@ -148,4 +162,5 @@ public class Main extends PApplet {
          }
       }
    }
+
 }
