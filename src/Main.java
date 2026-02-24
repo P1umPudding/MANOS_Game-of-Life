@@ -9,9 +9,9 @@ public class Main extends PApplet {
 
    }
 
-   int[] cubeColor = { 0, 102, 0 };
-   int[] strokeColor = { 64, 64, 64 };
-   int[] backgroundColor = { 0, 51, 0 };
+   int cubeColor = color(116, 183, 148);
+   int strokeColor = color(68, 80, 66);
+   int backgroundColor = color(61, 59, 60);
 
    int breite = 10;
    boolean[][] gitter;
@@ -108,11 +108,11 @@ public class Main extends PApplet {
          for (int y = 0; y < gitter[0].length; y++) {
 
             if (gitter[x][y] == true)
-               fill(cubeColor[0], cubeColor[1], cubeColor[2]);
+               fill(cubeColor);
             else
-               fill(backgroundColor[0], backgroundColor[1], backgroundColor[2]);
+               fill(backgroundColor);
 
-            stroke(strokeColor[0], strokeColor[1], strokeColor[2]);
+            stroke(strokeColor);
             rect(x * breite, y * breite, breite, breite);
 
          }
@@ -123,28 +123,28 @@ public class Main extends PApplet {
       PApplet.main("Main");
    }
 
-   boolean currentState;
+   boolean pauseButton;
 
    void currentState() {
-      if (currentState == true) {
+      if (pauseButton == true) {
          background(50);
          updateRaster();
          rules();
       }
-      if (currentState == false) {
+      if (pauseButton == false) {
 
       }
    }
 
-   @Override
+   //@Override
    public void keyPressed() {
       if (keyPressed) {
          if (key == ' ') {
-            if (currentState == true)
-               currentState = false;
+            if (pauseButton == true)
+               pauseButton = false;
             else
-               currentState = true;
-            println(currentState);
+               pauseButton = true;
+            println(pauseButton);
          }
       }
    }
