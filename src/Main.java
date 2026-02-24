@@ -23,7 +23,7 @@ public class Main extends PApplet {
 
    public void setup() {
       frameRate(10);
-      gitter = new boolean[width / breite][height / breite];
+      gitter = new boolean[width * sizeMultiplyer / breite][height * sizeMultiplyer / breite];
       //fülleGitterMitSeed(gitter, 696867);
       ui = new UILayout(this);
       ui.setupColors();
@@ -42,10 +42,19 @@ public class Main extends PApplet {
       }
    }
 
+   void applyRandomSeed() {
+      if (keyPressed) {
+         if (key == 'q') {
+            fülleGitterMitSeed(gitter, 696867);
+         }
+      }
+   }
+
    public void draw() {
       if (!uiState) {
          addRect();
-
+         move();
+         applyRandomSeed();
       }
 
       currentState();
@@ -145,12 +154,7 @@ public class Main extends PApplet {
          updateRaster();
          rules();
       }
-      if (pauseButton == false) {
 
-      }
-      if (!pauseButton && !uiState) {
-         rules();
-      }
    }
 
    void uiElements() {
@@ -194,11 +198,13 @@ public class Main extends PApplet {
                         delay(100);
 
                      }
-                     updateRaster();
+
                   }
                }
             }
          }
+         updateRaster();
+         println(uiState);
       }
 
    }
