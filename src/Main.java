@@ -34,13 +34,7 @@ public class Main extends PApplet {
    }
 
    public void draw() {
-      background(50);
-
-      updateRaster();
-
-      rules();
-
-      //delay(200);
+      currentState();
    }
 
    int xReduction = 0;
@@ -127,21 +121,30 @@ public class Main extends PApplet {
       PApplet.main("Main");
    }
 
-}
+   boolean currentState;
 
-/*
- * void currentState() {
- * if (currentState == true) {
- * background(50);
- * updateRaster();
- * Rules();
- * delay(200);
- * }
- * if (currentState == false) {
- * background(50);
- * updateRaster();
- * Rules();
- * delay(20000000000000000);
- * }
- * }
- */
+   void currentState() {
+      if (currentState == true) {
+         background(50);
+         updateRaster();
+         rules();
+         delay(10);
+      }
+      if (currentState == false) {
+         background(50);
+      }
+   }
+
+   @Override
+   public void keyPressed() {
+      if (keyPressed) {
+         if (key == ' ') {
+            if (currentState == true)
+               currentState = false;
+            else
+               currentState = true;
+            println(currentState);
+         }
+      }
+   }
+}
