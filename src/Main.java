@@ -11,15 +11,15 @@ public class Main extends PApplet {
 
    int cubeColor = color(116, 183, 148);
    int strokeColor = color(68, 80, 66);
-   int backgroundColor = color(61, 59, 60);
+   int backgroundColor = color(0, 0, 0);
 
    int breite = 10;
    boolean[][] gitter;
 
    public void setup() {
-      frameRate(5);
+      frameRate(10);
       gitter = new boolean[width / breite][height / breite];
-      fülleGitterMitSeed(gitter, 1234);
+      fülleGitterMitSeed(gitter, 696867);
 
    }
 
@@ -39,7 +39,6 @@ public class Main extends PApplet {
       addRect();
       currentState();
       uiElements();
-      reset();
    }
 
    int xReduction = 0;
@@ -131,7 +130,7 @@ public class Main extends PApplet {
 
    void currentState() {
       if (pauseButton == true) {
-         background(50);
+         background(0);
          updateRaster();
          rules();
       }
@@ -153,7 +152,7 @@ public class Main extends PApplet {
                pauseButton = false;
             else
                pauseButton = true;
-
+            println(pauseButton);
          }
       }
    }
@@ -182,18 +181,4 @@ public class Main extends PApplet {
 
    }
 
-   void reset() {
-      if (keyPressed) {
-         if (key == 'r') {
-            for (int x = 0; x < gitter.length; x++) {
-               for (int y = 0; y < gitter[0].length; y++) {
-                  gitter[x][y] = false;
-
-               }
-
-            }
-            updateRaster();
-         }
-      }
-   }
 }
