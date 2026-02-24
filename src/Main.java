@@ -19,7 +19,7 @@ public class Main extends PApplet {
    public void setup() {
       frameRate(5);
       gitter = new boolean[width / breite][height / breite];
-      fülleGitterMitSeed(gitter, 1234);
+      fülleGitterMitSeed(gitter, 6767);
 
    }
 
