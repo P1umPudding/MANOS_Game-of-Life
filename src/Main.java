@@ -13,11 +13,12 @@ public class Main extends PApplet {
    int[] strokeColor = { 64, 64, 64 };
    int[] backgroundColor = { 0, 51, 0 };
 
-   int breite = 10;
-   boolean[][] gitter = new boolean[width][height];
+   int breite = 70;
+   boolean[][] gitter = new boolean[width / breite][height / breite];
 
    public void setup() {
-      fülleGitterMitSeed(gitter, 1999999999);
+      frameRate(1);
+      fülleGitterMitSeed(gitter, 1234);
    }
 
    void fülleGitterMitSeed(boolean[][] gitter, int seed) {
@@ -39,7 +40,7 @@ public class Main extends PApplet {
 
       rules();
 
-      delay(200);
+      //delay(200);
    }
 
    int xReduction = 0;
