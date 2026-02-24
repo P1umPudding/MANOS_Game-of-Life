@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PostXL GmbH — Logo Variants</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    background: #f4f5f7;
+    color: #1a1a2e;
+  }
+  .header {
+    text-align: center;
+    padding: 56px 24px 12px;
+  }
+  .header h1 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #8b8fa3;
+  }
+  .grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .card {
+    border-radius: 16px;
+    padding: 56px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    position: relative;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 32px rgba(0,0,0,0.03);
+  }
+  .label {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: #1a1a2e;
+    opacity: 0.35;
+  }
+  .desc {
+    position: absolute;
+    bottom: 18px;
+    left: 22px;
+    font-size: 11px;
+    font-weight: 400;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>PostXL GmbH — Logo Explorations</h1>
+</div>
+
+<div class="grid">
+
+  <!-- 1: Table becoming window/app -->
+  <div class="card">
+    <span class="label">The Morph</span>
+    <span class="desc">A table icon seamlessly becoming an app window — direct visual transformation</span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 110" width="480" height="110">
+      <defs>
+        <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#2563eb"/>
+          <stop offset="100%" stop-color="#06b6d4"/>
+        </linearGradient>
+      </defs>
+      <g transform="translate(4, 8)">
+        <rect x="4" y="8" width="40" height="72" rx="6" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+        <rect x="4" y="8" width="40" height="14" rx="6" fill="#cbd5e1" opacity="0.3"/>
+        <rect x="4" y="22" width="40" height="0.5" fill="#cbd5e1" opacity="0.5"/>
+        <line x1="4" y1="36" x2="44" y2="36" stroke="#e2e8f0" stroke-width="0.8"/>
+        <line x1="4" y1="50" x2="44" y2="50" stroke="#e2e8f0" stroke-width="0.8"/>
+        <line x1="4" y1="64" x2="44" y2="64" stroke="#e2e8f0" stroke-width="0.8"/>
+        <line x1="24" y1="22" x2="24" y2="80" stroke="#e2e8f0" stroke-width="0.8"/>
+        <path d="M50 44 L62 44 L62 40 L72 48 L62 56 L62 52 L50 52 Z" fill="url(#g1)" opacity="0.5"/>
+        <rect x="78" y="8" width="44" height="72" rx="6" fill="none" stroke="url(#g1)" stroke-width="2"/>
+        <rect x="78" y="8" width="44" height="14" rx="6" fill="url(#g1)" opacity="0.15"/>
+        <circle cx="86" cy="15" r="2" fill="#f87171" opacity="0.7"/>
+        <circle cx="93" cy="15" r="2" fill="#fbbf24" opacity="0.7"/>
+        <circle cx="100" cy="15" r="2" fill="#34d399" opacity="0.7"/>
+        <rect x="84" y="28" width="32" height="4" rx="1.5" fill="url(#g1)" opacity="0.6"/>
+        <rect x="84" y="36" width="20" height="3" rx="1" fill="url(#g1)" opacity="0.3"/>
+        <rect x="84" y="44" width="32" height="12" rx="2.5" fill="url(#g1)" opacity="0.15"/>
+        <rect x="84" y="62" width="14" height="10" rx="2" fill="url(#g1)" opacity="0.35"/>
+        <rect x="101" y="62" width="14" height="10" rx="2" fill="url(#g1)" opacity="0.5"/>
+      </g>
+      <text x="138" y="66" font-family="'Outfit', sans-serif" font-size="54" font-weight="300" fill="#1e293b" letter-spacing="-1.5">Post</text>
+      <text x="243" y="66" font-family="'Outfit', sans-serif" font-size="54" font-weight="800" fill="url(#g1)" letter-spacing="-1">XL</text>
+      <text x="140" y="90" font-family="'IBM Plex Sans', sans-serif" font-size="12" font-weight="400" fill="#94a3b8" letter-spacing="3">TOOLS FOR THE AI AGE</text>
+    </svg>
+  </div>
+
+
+
+</div>
+
+</body>
+</html>

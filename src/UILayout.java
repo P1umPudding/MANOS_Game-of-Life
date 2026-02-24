@@ -30,7 +30,6 @@ public class UILayout extends PApplet {
    public void uiElements() {
       uiScreenshot1Cards();
       uiScreenshot2ControlBar();
-      uiScreenshot3Stats();
    }
 
    public void uiScreenshot1Cards() {
@@ -131,37 +130,6 @@ public class UILayout extends PApplet {
          fill(colorTextWhite);
          ellipse(btnX + (i * 55), barY, 5, 5);
       }
-      popStyle();
-   }
-
-   public void uiScreenshot3Stats() {
-      pushStyle();
-      textSize(12);
-      textAlign(CENTER, CENTER);
-
-      String[] stats = { "GEN: 124", "ZOOM: 1.0X", "CELLS: 42" };
-      float currentX = 20;
-
-      for (String s : stats) {
-         float boxW = textWidth(s) + 30;
-         fill(colorPanel);
-         stroke(50);
-         strokeWeight(1);
-         rect(currentX, 20, boxW, 30, 15);
-         fill(colorTextWhite);
-         noStroke();
-         text(s, currentX + boxW / 2, 33);
-         currentX += boxW + 15;
-      }
-
-      float eyeX = width - 40;
-      fill(colorPanel);
-      stroke(50);
-      ellipse(eyeX, 35, 35, 35);
-      fill(colorTextWhite);
-      ellipse(eyeX, 35, 12, 8);
-      fill(colorBg);
-      ellipse(eyeX, 35, 4, 4);
       popStyle();
    }
 
