@@ -17,9 +17,9 @@ public class Main extends PApplet {
    boolean[][] gitter;
 
    public void setup() {
-      frameRate(100);
+      frameRate(5);
       gitter = new boolean[width / breite][height / breite];
-      //fülleGitterMitSeed(gitter, 0);
+      fülleGitterMitSeed(gitter, 1234);
 
    }
 
@@ -39,6 +39,7 @@ public class Main extends PApplet {
       addRect();
       currentState();
       uiElements();
+      reset();
    }
 
    int xReduction = 0;
@@ -152,7 +153,7 @@ public class Main extends PApplet {
                pauseButton = false;
             else
                pauseButton = true;
-            println(pauseButton);
+
          }
       }
    }
@@ -181,4 +182,18 @@ public class Main extends PApplet {
 
    }
 
+   void reset() {
+      if (keyPressed) {
+         if (key == 'r') {
+            for (int x = 0; x < gitter.length; x++) {
+               for (int y = 0; y < gitter[0].length; y++) {
+                  gitter[x][y] = false;
+
+               }
+
+            }
+            updateRaster();
+         }
+      }
+   }
 }

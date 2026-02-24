@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "UILayout",
+            "request": "launch",
+            "mainClass": "UILayout",
+            "projectName": "MANOS_Game-of-Life_a1b94b46"
+        },
+        {
+            "type": "java",
             "name": "Run Sketch",
             "request": "launch",
             "mainClass": "Main",
