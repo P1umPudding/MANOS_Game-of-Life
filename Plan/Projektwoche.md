@@ -30,3 +30,21 @@
 
 - Erweiterung game of life (siehe u.a. https://youtu.be/I1JBiZrZ_XM)
   ![alt text](game-of-life-with-masks.png)
+
+```
+boolean[][] mask1 = {
+    { false, false, true, true, true, false, false },
+    { false, true, true, true, true, true, false },
+    { true, true, false, false, false, true, true },
+    { true, true, false, false, false, true, true },
+    { true, true, false, false, false, true, true },
+    { false, true, true, true, true, true, false },
+    { false, false, true, true, true, false, false },
+}
+
+boolean[][] mask2 = {            // "normale" Mask
+    { true, true, true },
+    { true, false, true },
+    { true, true, true },
+}
+```
