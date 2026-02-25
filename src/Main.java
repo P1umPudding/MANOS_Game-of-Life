@@ -1,7 +1,7 @@
 import processing.core.*;
 
 public class Main extends PApplet {
-
+   pixelanalyse pa;
    UILayout ui;
    boolean uiState = false;
 
@@ -22,7 +22,12 @@ public class Main extends PApplet {
    int sizeMultiplyer = 2;
 
    public void setup() {
-      frameRate(10);
+      textAlign(LEFT, BOTTOM);
+      textSize(24);
+
+      pa = new pixelanalyse(this);
+      pa.setup();
+      frameRate(20);
       gitter = new boolean[width * sizeMultiplyer / breite][height * sizeMultiplyer / breite];
       //fülleGitterMitSeed(gitter, 696867);
       ui = new UILayout(this);
@@ -45,7 +50,7 @@ public class Main extends PApplet {
    void applyRandomSeed() {
       if (keyPressed) {
          if (key == 'q') {
-            fülleGitterMitSeed(gitter, 696867);
+            fülleGitterMitSeed(gitter, 1234);
          }
       }
    }
@@ -55,11 +60,13 @@ public class Main extends PApplet {
          addRect();
          move();
          applyRandomSeed();
+
       }
 
       currentState();
       uiElements();
-
+      fill(255);
+      text("Generation: " + generation, 10, height - 10);
    }
 
    int xReduction = 0;
@@ -71,23 +78,32 @@ public class Main extends PApplet {
 
       if (x == 0)
          xReduction = 0;
-      else
+      else if (x >= 1)
          xReduction = 1;
+      //   else
+      //xReduction = 2;
 
       if (x == gitter.length - 1)
          xAddition = 0;
-      else
+      else if (x <= gitter.length - 2)
          xAddition = 1;
+      //   else
+      //xAddition = 2;
 
       if (y == 0)
          yReduction = 0;
-      else
+      else if (y >= 1)
          yReduction = 1;
+      //   else
+      //yReduction = 2;
 
       if (y == gitter[0].length - 1)
          yAddition = 0;
-      else
+      else if (y <= gitter[0].length - 2)
          yAddition = 1;
+      //  else
+      //   yAddition = 2;
+
    }
 
    void rules() {
@@ -112,15 +128,16 @@ public class Main extends PApplet {
             if ((liveCount < 2 || liveCount > 3) && gitter[x][y])
                gitter2[x][y] = false;
 
-            if (liveCount == 3 && !gitter[x][y])
+            if ((liveCount == 3 || liveCount == 3) && !gitter[x][y])
                gitter2[x][y] = true;
 
          }
       }
-
+      generation++;
       for (int x = 0; x < gitter.length; x++) {
          for (int y = 0; y < gitter[0].length; y++) {
             gitter[x][y] = gitter2[x][y];
+
          }
       }
 
@@ -148,11 +165,14 @@ public class Main extends PApplet {
 
    boolean pauseButton;
 
+   int generation = 0;
+
    void currentState() {
       if (pauseButton == true) {
          background(0);
          updateRaster();
          rules();
+
       }
 
    }
@@ -174,7 +194,7 @@ public class Main extends PApplet {
                pauseButton = false;
             else
                pauseButton = true;
-            println(pauseButton);
+
          }
       }
       if (key == ESC) {
@@ -204,20 +224,24 @@ public class Main extends PApplet {
             }
          }
          updateRaster();
-         println(uiState);
+
       }
 
    }
 
    void clearGrid() {
       if (keyPressed) {
-         if (key == 'r')
+         if (key == 'r') {
+
             for (int x = 0; x < gitter.length; x++) {
                for (int y = 0; y < gitter[0].length; y++) {
                   gitter[x][y] = false;
                }
+
             }
-         delay(10);
+            generation = 0;
+            delay(10);
+         }
       }
    }
 
