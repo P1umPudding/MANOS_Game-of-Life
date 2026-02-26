@@ -17,7 +17,7 @@ public class Main extends PApplet {
    int strokeColor = color(68, 80, 66);
    int backgroundColor = color(0, 0, 0);
 
-   int breite = 20;
+   int breite = 4;
    boolean[][] gitter;
 
    int sizeMultiplyer = 1;
@@ -146,10 +146,10 @@ public class Main extends PApplet {
                }
             }
 
-            if ((liveCount < 3 || liveCount > 4) && gitter[x][y])
+            if ((liveCount < 1 || liveCount > 2) && gitter[x][y])
                gitter2[x][y] = false;
 
-            if ((liveCount == 3 || liveCount == 3) && !gitter[x][y])
+            if (liveCount == 2 && !gitter[x][y])
                gitter2[x][y] = true;
 
          }
