@@ -22,20 +22,23 @@ public class Main extends PApplet {
 
    int sizeMultiplyer = 1;
 
-   void pixelanalyseStart() {
-      if (keyPressed && key == 'i') {
-         pa = new pixelanalyse(this);
-         // Rastergröße an die vorhandene gitter‑Dimension anpassen
-         gitter = pa.transformInArray(gitter.length, gitter[0].length);
-         generation = 0;
-      }
-   }
+   // Game of Life rule variables
+   int spawnCount = 2;
+   int despawnMin = 1;
+   int despawnMax = 2;
+
+   /*
+    * void pixelanalyseStart() {
+    * if (keyPressed && key == 'i') {
+    * pa = new pixelanalyse(this);
+    * // Rastergröße an die vorhandene gitter‑Dimension anpassen
+    * gitter = pa.transformInArray(gitter.length, gitter[0].length);
+    * generation = 0;
+    * }
+    */
 
    public void setup() {
-      textAlign(LEFT, BOTTOM);
-      textSize(24);
-
-      frameRate(20);
+      frameRate(10);
       gitter = new boolean[width * sizeMultiplyer / breite][height * sizeMultiplyer / breite];
       //fülleGitterMitSeed(gitter, 696867);
       ui = new UILayout(this);
@@ -76,7 +79,7 @@ public class Main extends PApplet {
    }
 
    public void draw() {
-      pixelanalyseStart();
+      // pixelanalyseStart();
       if (!uiState) {
          addRect();
          move();
@@ -146,10 +149,27 @@ public class Main extends PApplet {
                }
             }
 
+<<<<<<< HEAD
             if ((liveCount < 1 || liveCount > 2) && gitter[x][y])
                gitter2[x][y] = false;
 
             if (liveCount == 2 && !gitter[x][y])
+=======
+            // Apply despawn rule based on current rules
+            boolean shouldDespawn = false;
+            if (despawnMin > despawnMax) {
+               // Special case: despawn if liveCount != despawnMin (keep alive only at specific count)
+               shouldDespawn = (liveCount != despawnMin) && gitter[x][y];
+            } else {
+               // Normal case: despawn if liveCount < despawnMin or > despawnMax
+               shouldDespawn = (liveCount < despawnMin || liveCount > despawnMax) && gitter[x][y];
+            }
+
+            if (shouldDespawn)
+               gitter2[x][y] = false;
+
+            if ((liveCount == spawnCount) && !gitter[x][y])
+>>>>>>> 602275f (Added key binds for the experiment)
                gitter2[x][y] = true;
 
          }
@@ -221,9 +241,44 @@ public class Main extends PApplet {
       if (key == 'e' || key == 'E') {
          svgExporter.exportCurrentScreenToSvg();
       }
+      if (key == 'i' || key == 'I') {
+         svgExporter.importScreenshotToSvg("screenshot_01");
+      }
       if (key == ESC) {
          key = 0;
          uiState = !uiState;
+      }
+
+      // Game of Life rule keybinds (only when uiState is false)
+      if (!uiState) {
+         if (key == '1') {
+            // Rule 1: Spawn at 3, Despawn if < 2 or > 3
+            spawnCount = 3;
+            despawnMin = 2;
+            despawnMax = 3;
+            println("Rule 1: Spawn=3, Despawn=<2 or >3");
+         }
+         if (key == '2') {
+            // Rule 2: Spawn at 4, Despawn if < 2 or > 2 (keep alive only at 2)
+            spawnCount = 4;
+            despawnMin = 2;
+            despawnMax = 1;
+            println("Rule 2: Spawn=4, Despawn=anything but 2");
+         }
+         if (key == '3') {
+            // Rule 3: Spawn at 3, Despawn if < 1 or > 4
+            spawnCount = 3;
+            despawnMin = 1;
+            despawnMax = 4;
+            println("Rule 3: Spawn=3, Despawn=<1 or >4");
+         }
+         if (key == '4') {
+            // Rule 4: Spawn at 2, Despawn if < 1 or > 2 (default)
+            spawnCount = 2;
+            despawnMin = 1;
+            despawnMax = 2;
+            println("Rule 4: Spawn=2, Despawn=<1 or >2 (Default)");
+         }
       }
    }
 

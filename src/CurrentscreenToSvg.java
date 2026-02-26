@@ -3,6 +3,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 
 public class CurrentscreenToSvg {
 
@@ -87,5 +89,85 @@ public class CurrentscreenToSvg {
       } catch (IOException e) {
          System.err.println("Error saving SVG: " + e.getMessage());
       }
+   }
+
+   // Import screenshot and convert to SVG
+   public void importScreenshotToSvg(String imageName) {
+      String[] possiblePaths = {
+            "data/" + imageName + ".png",
+            "data/" + imageName + ".jpg",
+            "data/" + imageName + ".jpeg",
+            "data/" + imageName + ".bmp",
+            imageName + ".png",
+            imageName + ".jpg",
+            imageName + ".jpeg",
+            imageName + ".bmp",
+            imageName
+      };
+
+      File imageFile = null;
+      String filePath = null;
+
+      // Try to find the file in different locations
+      for (String path : possiblePaths) {
+         File f = new File(path);
+         if (f.exists() && f.isFile()) {
+            imageFile = f;
+            filePath = path;
+            break;
+         }
+      }
+
+      if (imageFile == null) {
+         System.err.println("Could not find screenshot: " + imageName);
+         System.err.println("Looked in:");
+         for (String path : possiblePaths) {
+            System.err.println("  - " + path);
+         }
+         return;
+      }
+
+      try {
+         BufferedImage img = ImageIO.read(imageFile);
+         if (img == null) {
+            System.err.println("Could not load image: " + filePath);
+            return;
+         }
+
+         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+         String outputFile = outputFolder + "/screenshot_" + timestamp + ".svg";
+
+         FileWriter writer = new FileWriter(outputFile);
+         writer.write(generateSvgFromImage(img));
+         writer.close();
+         System.out.println("Screenshot converted and exported: " + outputFile);
+      } catch (IOException e) {
+         System.err.println("Error importing screenshot: " + e.getMessage());
+         e.printStackTrace();
+      }
+   }
+
+   // Generate SVG from BufferedImage
+   String generateSvgFromImage(BufferedImage img) {
+      int width = img.getWidth();
+      int height = img.getHeight();
+
+      StringBuilder svg = new StringBuilder();
+      svg.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+      svg.append("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" + width + "\" height=\"" + height + "\">\n");
+
+      // Convert each pixel to an SVG rectangle
+      for (int y = 0; y < height; y++) {
+         for (int x = 0; x < width; x++) {
+            int rgb = img.getRGB(x, y);
+            String hexColor = String.format("#%06x", (rgb & 0xFFFFFF));
+
+            svg.append("  <rect x=\"" + x + "\" y=\"" + y + "\" width=\"1\" height=\"1\" fill=\"" + hexColor
+                  + "\"/>\n");
+         }
+      }
+
+      svg.append("</svg>");
+      return svg.toString();
    }
 }
