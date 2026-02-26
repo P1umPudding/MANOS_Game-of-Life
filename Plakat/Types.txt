@@ -3,29 +3,28 @@ normal		B-3	S-3,4
 	- viel zellen sterben ab durch überpopulotion
 	- nur wenige zellen wandern noch umher, viele statisch und blinker zellen
 
-Fazit: Bei diesen Regeln kippt das System verhältnismäßig schnell in eine Erstarrung. Durch die veränderte Überlebensbedingung (S-3,4) sterben isolierte Zellen schneller ab. Die Population verdichtet sich zwar anfangs, erstickt dann aber an Überpopulation und endet überwiegend in starren oder oszillierenden Gebilden. Ein echtes "Leben" im Sinne eines dauerhaften, dynamischen Gleichgewichts kann sich hier nicht langfristig etablieren, da das System nach einer Anfangsphase stagniert.
+Fazit: Daduch das die Zellen absterben abe es weiterhin lebende Zellne gibt kommt es zu einem ausgeglichem leben mit statischen obhjekten und weiterhin oszillierenden Objekten was aber in einem stillstand enden kann.
 
 extinktion - 	B-4 	S-2
 	- viel zellen sterban ab
 	- zellen bauen sehr schnell ab
 	- keine wietere "bewegung" nur ncoh blinker oder statische objekte
 
-Fazit: Wie der Name bereits vermuten lässt, sind diese Regeln viel zu restriktiv für die Entstehung von dauerhaftem Leben. Eine Reproduktion (B-4) ist zu schwer zu erreichen, während das Überleben (S-2) extrem limitiert ist. Biologisch betrachtet gleicht dies einem Organismus, dessen Zellabbau viel schneller voranschreitet als die Zellerneuerung. Das System stirbt rasch aus oder friert sofort in Bewegungslosigkeit ein. Das Gleichgewicht fehlt hier völlig; die Waage schlägt direkt in Richtung "Tod/Erstarrung" aus.
+Fazit: Durch das schnelle absterben gibt es am ende nur noch oszillierenden udn statische objekte wodurch es keine großen änderungen gibt und sche kein neuse leben bilden kann.
 
 wachstum - 	B-3 	S-1,2,3,4
 	- zellen füllen fast den gesamten bereich
 	- zellen breiten sich aus und ergeben eine art labirint
 	- großes statisches objekt mit wenigen kleineren blinker
 
-Fazit: Dieses Regelwerk ist extrem tolerant gegenüber dem Überleben von Zellen. Die Folge ist ein unkontrolliertes, rasantes Wachstum, das in der Medizin exakt dem Verhalten eines wuchernden Tumors entspricht. Da kaum Zellen auf natürliche Weise absterben, verliert das System jegliche Dynamik durch schiere Überfüllung ("Labyrinth"). Auch hier existiert kein Gleichgewicht: Das Chaos wuchert so lange, bis der gesamte "Organismus" (das Spielfeld) voll ist und das System zwangsläufig in einer gigantischen, unbeweglichen Masse erstarrt.
+Fazit: Dadurch das auch bei großen menegn an Zellen die Zellen nicht sterben bilden sich ein großes statiches Obkjekt mit wenigen blinkern indrinne.
 
 higlife - 	B-2 	S-1,2
 	- minimaler seed abbau
 	- viele "bewegente" Zellen, 
 	- viele "bewgende" objekte mit wenig lücken,wenig ziruliernende obkekt
 	
-Fazit: Dieses Regelwerk setzt die Hürden für Reproduktion (B-2) und Überleben (S-1,2) extrem niedrig an. Das Resultat ist eine sehr dichte, chaotische Masse ("wenig Lücken"), die jedoch – im Gegensatz zum Experiment "wachstum" – nicht erstarrt, sondern hochgradig nervös und dynamisch bleibt. Biologisch betrachtet gleicht dies einer überaktiven, unkontrollierten Zellteilung, die den Organismus in einen permanenten, fieberhaften Stresszustand versetzt. Es bilden sich kaum stabile, strukturierte Muster (wie zirkulierende Objekte), stattdessen herrscht ununterbrochenes, dicht gedrängtes Chaos. Auch hier fehlt das ruhige Gleichgewicht völlig.
-
+Fazit: Durch die geringen überlebens werte und geburten werte ändert sich das gesamt bild sehr wodurch viel zirkulation entsteht und es nie zu einem statischem zustand kommt.
 
 
 FAZIT: Das Experiment bestätigt die aufgestellte Hypothese eindeutig: Künstliches Leben ist extrem fragil und abhängig von einem exakt ausbalancierten Regelwerk.
