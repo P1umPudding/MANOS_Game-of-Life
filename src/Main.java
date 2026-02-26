@@ -22,10 +22,10 @@ public class Main extends PApplet {
 
    int sizeMultiplyer = 1;
 
-   // Game of Life rule variables
-   int spawnCount = 2;
-   int despawnMin = 1;
-   int despawnMax = 2;
+   // Game of Life rule parameters (modifiable via keybinds)
+   int spawnCount = 2; // neighbor count required for birth
+   int despawnMin = 1; // minimum neighbors for a live cell to survive
+   int despawnMax = 2; // maximum neighbors for a live cell to survive
 
    /*
     * void pixelanalyseStart() {
@@ -149,28 +149,22 @@ public class Main extends PApplet {
                }
             }
 
-<<<<<<< HEAD
-            if ((liveCount < 1 || liveCount > 2) && gitter[x][y])
-               gitter2[x][y] = false;
-
-            if (liveCount == 2 && !gitter[x][y])
-=======
-            // Apply despawn rule based on current rules
-            boolean shouldDespawn = false;
+            // despawn logic using current rule parameters
+            boolean shouldDespawn;
             if (despawnMin > despawnMax) {
-               // Special case: despawn if liveCount != despawnMin (keep alive only at specific count)
+               // special case: only survive at exactly despawnMin neighbors
                shouldDespawn = (liveCount != despawnMin) && gitter[x][y];
             } else {
-               // Normal case: despawn if liveCount < despawnMin or > despawnMax
                shouldDespawn = (liveCount < despawnMin || liveCount > despawnMax) && gitter[x][y];
             }
-
-            if (shouldDespawn)
+            if (shouldDespawn) {
                gitter2[x][y] = false;
+            }
 
-            if ((liveCount == spawnCount) && !gitter[x][y])
->>>>>>> 602275f (Added key binds for the experiment)
+            // spawn logic using current spawnCount
+            if ((liveCount == spawnCount) && !gitter[x][y]) {
                gitter2[x][y] = true;
+            }
 
          }
       }
@@ -252,32 +246,48 @@ public class Main extends PApplet {
       // Game of Life rule keybinds (only when uiState is false)
       if (!uiState) {
          if (key == '1') {
-            // Rule 1: Spawn at 3, Despawn if < 2 or > 3
+            // rule 1: spawn=3, despawn if <2 or >3
             spawnCount = 3;
             despawnMin = 2;
             despawnMax = 3;
-            println("Rule 1: Spawn=3, Despawn=<2 or >3");
+            println("Rule 1 selected (spawn 3, despawn <2 or >3)");
+            fülleGitterMitSeed(gitter, (int) random(0, 299999999));
          }
          if (key == '2') {
-            // Rule 2: Spawn at 4, Despawn if < 2 or > 2 (keep alive only at 2)
+            // rule 2: spawn=4, survive only at 2 neighbors
             spawnCount = 4;
             despawnMin = 2;
-            despawnMax = 1;
-            println("Rule 2: Spawn=4, Despawn=anything but 2");
+            despawnMax = 1; // signal special case
+            println("Rule 2 selected (spawn 4, survive only at 2)");
+            fülleGitterMitSeed(gitter, (int) random(0, 299999999));
          }
          if (key == '3') {
-            // Rule 3: Spawn at 3, Despawn if < 1 or > 4
+            // rule 3: spawn=3, despawn <1 or >4
             spawnCount = 3;
             despawnMin = 1;
             despawnMax = 4;
-            println("Rule 3: Spawn=3, Despawn=<1 or >4");
+            println("Rule 3 selected (spawn 3, despawn <1 or >4)");
+            fülleGitterMitSeed(gitter, (int) random(0, 299999999));
          }
          if (key == '4') {
-            // Rule 4: Spawn at 2, Despawn if < 1 or > 2 (default)
+            // rule 4: standard Conway
             spawnCount = 2;
             despawnMin = 1;
             despawnMax = 2;
-            println("Rule 4: Spawn=2, Despawn=<1 or >2 (Default)");
+            println("Rule 4 selected (spawn 2, despawn <1 or >2)");
+            fülleGitterMitSeed(gitter, (int) random(0, 299999999));
+         }
+         if (key == '6') {
+            println("Key 6 pressed - no rule assigned");
+         }
+         if (key == '7') {
+            println("Key 7 pressed - no rule assigned");
+         }
+         if (key == '8') {
+            println("Key 8 pressed - no rule assigned");
+         }
+         if (key == '9') {
+            println("Key 9 pressed - no rule assigned");
          }
       }
    }
