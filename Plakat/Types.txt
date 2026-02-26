@@ -1,36 +1,41 @@
-normal		B-3	S-2,3
+normal		B-3	S-3,4
 	- viele "bewegende" zellen
 	- viel zellen sterben ab durch überpopulotion
-	- nur wenige zellen wandern noch umher, viele statisch udn blinker zellen
+	- nur wenige zellen wandern noch umher, viele statisch und blinker zellen
 
-
-Fazit-
-
-
+Fazit: Bei diesen Regeln kippt das System verhältnismäßig schnell in eine Erstarrung. Durch die veränderte Überlebensbedingung (S-3,4) sterben isolierte Zellen schneller ab. Die Population verdichtet sich zwar anfangs, erstickt dann aber an Überpopulation und endet überwiegend in starren oder oszillierenden Gebilden. Ein echtes "Leben" im Sinne eines dauerhaften, dynamischen Gleichgewichts kann sich hier nicht langfristig etablieren, da das System nach einer Anfangsphase stagniert.
 
 extinktion - 	B-4 	S-2
 	- viel zellen sterban ab
 	- zellen bauen sehr schnell ab
 	- keine wietere "bewegung" nur ncoh blinker oder statische objekte
 
-
-Fazit-
-
+Fazit: Wie der Name bereits vermuten lässt, sind diese Regeln viel zu restriktiv für die Entstehung von dauerhaftem Leben. Eine Reproduktion (B-4) ist zu schwer zu erreichen, während das Überleben (S-2) extrem limitiert ist. Biologisch betrachtet gleicht dies einem Organismus, dessen Zellabbau viel schneller voranschreitet als die Zellerneuerung. Das System stirbt rasch aus oder friert sofort in Bewegungslosigkeit ein. Das Gleichgewicht fehlt hier völlig; die Waage schlägt direkt in Richtung "Tod/Erstarrung" aus.
 
 wachstum - 	B-3 	S-1,2,3,4
 	- zellen füllen fast den gesamten bereich
 	- zellen breiten sich aus und ergeben eine art labirint
-	- großes statisches objekt mit wenig kleineren blinker
+	- großes statisches objekt mit wenigen kleineren blinker
 
-Fazit-
-
-
+Fazit: Dieses Regelwerk ist extrem tolerant gegenüber dem Überleben von Zellen. Die Folge ist ein unkontrolliertes, rasantes Wachstum, das in der Medizin exakt dem Verhalten eines wuchernden Tumors entspricht. Da kaum Zellen auf natürliche Weise absterben, verliert das System jegliche Dynamik durch schiere Überfüllung ("Labyrinth"). Auch hier existiert kein Gleichgewicht: Das Chaos wuchert so lange, bis der gesamte "Organismus" (das Spielfeld) voll ist und das System zwangsläufig in einer gigantischen, unbeweglichen Masse erstarrt.
 
 higlife - 	B-2 	S-1,2
 	- minimaler seed abbau
 	- viele "bewegente" Zellen, 
 	- viele "bewgende" objekte mit wenig lücken,wenig ziruliernende obkekt
+	
+Fazit: Dieses Regelwerk setzt die Hürden für Reproduktion (B-2) und Überleben (S-1,2) extrem niedrig an. Das Resultat ist eine sehr dichte, chaotische Masse ("wenig Lücken"), die jedoch – im Gegensatz zum Experiment "wachstum" – nicht erstarrt, sondern hochgradig nervös und dynamisch bleibt. Biologisch betrachtet gleicht dies einer überaktiven, unkontrollierten Zellteilung, die den Organismus in einen permanenten, fieberhaften Stresszustand versetzt. Es bilden sich kaum stabile, strukturierte Muster (wie zirkulierende Objekte), stattdessen herrscht ununterbrochenes, dicht gedrängtes Chaos. Auch hier fehlt das ruhige Gleichgewicht völlig.
 
 
-Fazit-
 
+FAZIT: Das Experiment bestätigt die aufgestellte Hypothese eindeutig: Künstliches Leben ist extrem fragil und abhängig von einem exakt ausbalancierten Regelwerk.
+
+Die Analogie zur Biologie und Medizin ließ sich in der Simulation eindrucksvoll nachweisen, da jede Veränderung der Regeln das notwendige Gleichgewicht sofort zerstörte.
+
+    Verschärft man die Regeln (wie bei "extinktion"), stirbt der Organismus fast sofort ab.
+
+    Verlangt man minimal mehr Nachbarn zum Überleben ("normal"), stagniert die Entwicklung schnell in Erstarrung.
+
+    Macht man die Regeln zu tolerant, endet das System entweder in einem erstarrten, alles überwuchernden Tumor ("wachstum") oder in einem dichten, chaotisch brodelnden Dauerstresszustand ohne jegliche strukturelle Ordnung ("higlife").
+
+Das Game of Life beweist damit eindrucksvoll: "Leben" kann nur in einer ganz spezifischen Nische existieren. Die Balance auf dem schmalen Grat zwischen dem chaotischen Rauschen der Überpopulation und dem Kältetod der völligen Erstarrung ist kein Zufall, sondern erfordert – in der Biologie wie im Code – exakt abgestimmte Naturgesetze.
