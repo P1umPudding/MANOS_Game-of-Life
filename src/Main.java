@@ -48,9 +48,20 @@ public class Main extends PApplet {
    }
 
    void applyRandomSeed() {
-      if (keyPressed) {
-         if (key == 'q') {
-            fülleGitterMitSeed(gitter, 1234);
+      if (mousePressed && mouseButton == LEFT && uiState) {
+         float cardW = 300;
+         float cardH = 160;
+         float gap = 20;
+         float menuStartX = (width / 2) - cardW - gap / 2;
+         float menuStartY = (height / 2) - 50 - cardH - gap / 2;
+
+         float cx = menuStartX;
+         float cy = menuStartY;
+
+         if (mouseX > cx && mouseX < cx + cardW &&
+               mouseY > cy && mouseY < cy + cardH) {
+            fülleGitterMitSeed(gitter, (int) random(0, 299999999));
+            uiState = false;
          }
       }
    }
@@ -59,10 +70,10 @@ public class Main extends PApplet {
       if (!uiState) {
          addRect();
          move();
-         applyRandomSeed();
 
       }
 
+      applyRandomSeed();
       currentState();
       uiElements();
       fill(255);
