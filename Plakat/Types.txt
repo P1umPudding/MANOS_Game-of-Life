@@ -1,0 +1,36 @@
+normal		B-3	S-2,3
+	- viele "bewegende" zellen
+	- viel zellen sterben ab durch überpopulotion
+	- nur wenige zellen wandern noch umher, viele statisch udn blinker zellen
+
+
+Fazit-
+
+
+
+extinktion - 	B-4 	S-2
+	- viel zellen sterban ab
+	- zellen bauen sehr schnell ab
+	- keine wietere "bewegung" nur ncoh blinker oder statische objekte
+
+
+Fazit-
+
+
+wachstum - 	B-3 	S-1,2,3,4
+	- zellen füllen fast den gesamten bereich
+	- zellen breiten sich aus und ergeben eine art labirint
+	- großes statisches objekt mit wenig kleineren blinker
+
+Fazit-
+
+
+
+higlife - 	B-2 	S-1,2
+	- minimaler seed abbau
+	- viele "bewegente" Zellen, 
+	- viele "bewgende" objekte mit wenig lücken,wenig ziruliernende obkekt
+
+
+Fazit-
+
