@@ -125,10 +125,10 @@ public class Main extends PApplet {
                }
             }
 
-            if ((liveCount < 2 || liveCount > 3) && gitter[x][y])
+            if ((liveCount < 1 || liveCount > 2) && gitter[x][y])
                gitter2[x][y] = false;
 
-            if ((liveCount == 3 || liveCount == 3) && !gitter[x][y])
+            if ((liveCount == 2 || liveCount == 2) && !gitter[x][y])
                gitter2[x][y] = true;
 
          }
