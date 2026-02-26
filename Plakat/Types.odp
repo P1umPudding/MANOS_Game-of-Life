@@ -1,0 +1,32 @@
+Normal (B3 / S3,4)
+Fazit: Es entsteht ein Gleichgewicht zwischen Wachstum und Absterben. 
+Dadurch bilden sich stabile Strukturen und Oszillatoren, und das System erreicht häufig einen weitgehend ruhigen Endzustand.
+
+
+Extinktion (B4 / S2)
+Fazit: Durch die strengen Bedingungen sterben viele Zellen schnell ab. 
+Das Spielfeld wird rasch leerer und es entstehen kaum komplexe oder dauerhafte Muster.
+
+
+Wachstum (B3 / S1,2,3,4)
+Fazit: Da Zellen unter vielen Bedingungen überleben, breitet sich das Muster stark aus. 
+Es entstehen große, zusammenhängende und meist stabile Strukturen.
+
+
+Highlife (B2 / S1,2)
+Fazit: Die zusätzlichen Geburtsmöglichkeiten sorgen für viele neue und bewegliche Muster.
+Das System bleibt langfristig aktiv und verändert sich ständig.
+
+
+
+FAZIT: Das Experiment bestätigt die aufgestellte Hypothese eindeutig: Künstliches Leben ist extrem fragil und abhängig von einem exakt ausbalancierten Regelwerk.
+
+Die Analogie zur Biologie und Medizin ließ sich in der Simulation eindrucksvoll nachweisen, da jede Veränderung der Regeln das notwendige Gleichgewicht sofort zerstörte.
+
+    Verschärft man die Regeln (wie bei "extinktion"), stirbt der Organismus fast sofort ab.
+
+    Verlangt man minimal mehr Nachbarn zum Überleben ("normal"), stagniert die Entwicklung schnell in Erstarrung.
+
+    Macht man die Regeln zu tolerant, endet das System entweder in einem erstarrten, alles überwuchernden Tumor ("wachstum") oder in einem dichten, chaotisch brodelnden Dauerstresszustand ohne jegliche strukturelle Ordnung ("higlife").
+
+Das Game of Life beweist damit eindrucksvoll: "Leben" kann nur in einer ganz spezifischen Nische existieren. Die Balance auf dem schmalen Grat zwischen dem chaotischen Rauschen der Überpopulation und dem Kältetod der völligen Erstarrung ist kein Zufall, sondern erfordert – in der Biologie wie im Code – exakt abgestimmte Naturgesetze.
