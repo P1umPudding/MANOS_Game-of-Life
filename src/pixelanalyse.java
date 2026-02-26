@@ -1,61 +1,40 @@
 import processing.core.*;
 
-public class pixelanalyse extends PApplet {
+public class pixelanalyse { // kein PApplet mehr
    PApplet p;
    PImage img;
 
-   pixelanalyse(PApplet parent) {
+   public pixelanalyse(PApplet parent) {
       p = parent;
    }
 
-   public void setup() {
+   /**
+    * Bild laden, auf cols×rows skalieren und in ein boolsches Feld
+    * umwandeln (weiß = true, schwarz = false).
+    */
+   public boolean[][] transformInArray(int cols, int rows) {
       img = p.loadImage("image.png");
-      setGray();
-      transformInArray();
-   }
+      if (img == null) { // fehlende Datei abfangen
+         PApplet.println("image.png nicht gefunden");
+         return new boolean[cols][rows];
+      }
 
-   void setGray() {
+      img.resize(cols, rows);
       img.loadPixels();
 
-      for (int i = 0; i < img.pixels.length; i++) {
+      boolean[][] result = new boolean[cols][rows];
 
+      for (int i = 0; i < img.pixels.length; i++) {
+         int x = i % img.width;
+         int y = i / img.width;
          int c = img.pixels[i];
 
-         float r = red(c);
-         float g = green(c);
-         float b = blue(c);
+         float gray = 0.299f * p.red(c)
+               + 0.587f * p.green(c)
+               + 0.114f * p.blue(c);
 
-         // gewichtete Grauberechnung
-         float setBW = 0.299f * r + 0.587f * g + 0.114f * b;
-
-         if (setBW < 127)
-            setBW = 0;
-         else
-            setBW = 255;
-         img.pixels[i] = color(setBW);
-
+         result[x][y] = gray >= 127; // Schwellenwert 127
       }
-      img.updatePixels();
+      return result;
    }
-
-   boolean[][] trueFalse;
-
-   boolean[][] transformInArray() {
-
-      trueFalse = new boolean[img.width][img.height];
-
-      for (int p = 0; p < img.pixels.length; p++) {
-
-         int x = p % img.width; // Spalte
-         int y = p / img.width; // Zeile
-
-         if (img.pixels[p] == color(0)) {
-            trueFalse[x][y] = false;
-         } else {
-            trueFalse[x][y] = true;
-         }
-      }
-      return trueFalse;
-   }
-
 }

@@ -16,17 +16,24 @@ public class Main extends PApplet {
    int strokeColor = color(68, 80, 66);
    int backgroundColor = color(0, 0, 0);
 
-   int breite = 10;
+   int breite = 20;
    boolean[][] gitter;
 
-   int sizeMultiplyer = 2;
+   int sizeMultiplyer = 1;
+
+   void pixelanalyseStart() {
+      if (keyPressed && key == 'i') {
+         pa = new pixelanalyse(this);
+         // Rastergröße an die vorhandene gitter‑Dimension anpassen
+         gitter = pa.transformInArray(gitter.length, gitter[0].length);
+         generation = 0;
+      }
+   }
 
    public void setup() {
       textAlign(LEFT, BOTTOM);
       textSize(24);
 
-      pa = new pixelanalyse(this);
-      pa.setup();
       frameRate(20);
       gitter = new boolean[width * sizeMultiplyer / breite][height * sizeMultiplyer / breite];
       //fülleGitterMitSeed(gitter, 696867);
@@ -67,6 +74,7 @@ public class Main extends PApplet {
    }
 
    public void draw() {
+      pixelanalyseStart();
       if (!uiState) {
          addRect();
          move();
@@ -136,10 +144,10 @@ public class Main extends PApplet {
                }
             }
 
-            if ((liveCount < 1 || liveCount > 2) && gitter[x][y])
+            if ((liveCount < 3 || liveCount > 4) && gitter[x][y])
                gitter2[x][y] = false;
 
-            if ((liveCount == 2 || liveCount == 2) && !gitter[x][y])
+            if ((liveCount == 3 || liveCount == 3) && !gitter[x][y])
                gitter2[x][y] = true;
 
          }
