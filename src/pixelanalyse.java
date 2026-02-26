@@ -4,16 +4,27 @@ public class pixelanalyse { // kein PApplet mehr
    PApplet p;
    PImage img;
 
-   public pixelanalyse(PApplet parent) {
-      p = parent;
-   }
+public pixelanalyse(PApplet parent) {
+   p = parent;
+}
+String image = "imageMerkel.png";
 
+public boolean checkKeyPressed() {
+   if (p.keyPressed && (p.key == 'm' || p.key == 'M')) {
+      if (!image.equals("imageManos.png")) {
+         image = "imageManos.png";
+         return true;
+      }
+   }
+   return false;
+}
+   
    /**
     * Bild laden, auf cols×rows skalieren und in ein boolsches Feld
     * umwandeln (weiß = true, schwarz = false).
     */
    public boolean[][] transformInArray(int cols, int rows) {
-      img = p.loadImage("image.png");
+      img = p.loadImage(image);
       if (img == null) { // fehlende Datei abfangen
          PApplet.println("image.png nicht gefunden");
          return new boolean[cols][rows];

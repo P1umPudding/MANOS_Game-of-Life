@@ -9,7 +9,6 @@ public class Main extends PApplet {
    public void settings() {
 
       fullScreen();
-      //size(800, 800);
 
    }
 
@@ -17,30 +16,26 @@ public class Main extends PApplet {
    int strokeColor = color(68, 80, 66);
    int backgroundColor = color(0, 0, 0);
 
-   int breite = 4;
+   int breite = 10;
    boolean[][] gitter;
 
    int sizeMultiplyer = 1;
 
-   // Game of Life rule parameters (modifiable via keybinds)
-   int spawnCount = 2; // neighbor count required for birth
-   int despawnMin = 1; // minimum neighbors for a live cell to survive
-   int despawnMax = 2; // maximum neighbors for a live cell to survive
+   int spawnCount = 2;
+   int despawnMin = 1;
+   int despawnMax = 2;
 
-   /*
-    * void pixelanalyseStart() {
-    * if (keyPressed && key == 'i') {
-    * pa = new pixelanalyse(this);
-    * // Rastergröße an die vorhandene gitter‑Dimension anpassen
-    * gitter = pa.transformInArray(gitter.length, gitter[0].length);
-    * generation = 0;
-    * }
-    */
+   void pixelanalyseStart() {
+      if (keyPressed && key == 'i') {
+         pa = new pixelanalyse(this);
+         gitter = pa.transformInArray(gitter.length, gitter[0].length);
+         generation = 0;
+      }
+   }
 
    public void setup() {
-      frameRate(10);
+      frameRate(5);
       gitter = new boolean[width * sizeMultiplyer / breite][height * sizeMultiplyer / breite];
-      //fülleGitterMitSeed(gitter, 696867);
       ui = new UILayout(this);
       ui.setupColors();
       svgExporter = new CurrentscreenToSvg(this);
@@ -50,11 +45,10 @@ public class Main extends PApplet {
    void fülleGitterMitSeed(boolean[][] gitter, int seed) {
       for (int y = 0; y < gitter.length; y++) {
          for (int x = 0; x < gitter[y].length; x++) {
-            // pseudo-random, deterministisch, basierend auf Seed
             long val = x * 341873128712L + y * 132897987541L + seed;
-            val = (val ^ (val >> 13)) * 1274126177L; // einfache Hash-Mischung
+            val = (val ^ (val >> 13)) * 1274126177L;
             val = val ^ (val >> 16);
-            gitter[y][x] = (val & 1) == 0; // true/false deterministisch
+            gitter[y][x] = (val & 1) == 0;
          }
       }
    }
@@ -79,7 +73,13 @@ public class Main extends PApplet {
    }
 
    public void draw() {
-      // pixelanalyseStart();
+      pixelanalyseStart();
+      if (pa != null) {
+         if (pa.checkKeyPressed()) {
+            gitter = pa.transformInArray(gitter.length, gitter[0].length);
+            generation = 0;
+         }
+      }
       if (!uiState) {
          addRect();
          move();
@@ -104,29 +104,21 @@ public class Main extends PApplet {
          xReduction = 0;
       else if (x >= 1)
          xReduction = 1;
-      //   else
-      //xReduction = 2;
 
       if (x == gitter.length - 1)
          xAddition = 0;
       else if (x <= gitter.length - 2)
          xAddition = 1;
-      //   else
-      //xAddition = 2;
 
       if (y == 0)
          yReduction = 0;
       else if (y >= 1)
          yReduction = 1;
-      //   else
-      //yReduction = 2;
 
       if (y == gitter[0].length - 1)
          yAddition = 0;
       else if (y <= gitter[0].length - 2)
          yAddition = 1;
-      //  else
-      //   yAddition = 2;
 
    }
 
@@ -149,7 +141,6 @@ public class Main extends PApplet {
                }
             }
 
-            // despawn logic using current rule parameters
             boolean shouldDespawn;
             if (despawnMin > despawnMax) {
                // special case: only survive at exactly despawnMin neighbors
@@ -161,7 +152,6 @@ public class Main extends PApplet {
                gitter2[x][y] = false;
             }
 
-            // spawn logic using current spawnCount
             if ((liveCount == spawnCount) && !gitter[x][y]) {
                gitter2[x][y] = true;
             }
@@ -235,18 +225,13 @@ public class Main extends PApplet {
       if (key == 'e' || key == 'E') {
          svgExporter.exportCurrentScreenToSvg();
       }
-      if (key == 'i' || key == 'I') {
-         svgExporter.importScreenshotToSvg("screenshot_01");
-      }
       if (key == ESC) {
          key = 0;
          uiState = !uiState;
       }
 
-      // Game of Life rule keybinds (only when uiState is false)
       if (!uiState) {
          if (key == '1') {
-            // rule 1: spawn=3, despawn if <2 or >3
             spawnCount = 3;
             despawnMin = 2;
             despawnMax = 3;
@@ -254,15 +239,13 @@ public class Main extends PApplet {
             fülleGitterMitSeed(gitter, (int) random(0, 299999999));
          }
          if (key == '2') {
-            // rule 2: spawn=4, survive only at 2 neighbors
             spawnCount = 4;
             despawnMin = 2;
-            despawnMax = 1; // signal special case
+            despawnMax = 1;
             println("Rule 2 selected (spawn 4, survive only at 2)");
             fülleGitterMitSeed(gitter, (int) random(0, 299999999));
          }
          if (key == '3') {
-            // rule 3: spawn=3, despawn <1 or >4
             spawnCount = 3;
             despawnMin = 1;
             despawnMax = 4;
@@ -270,7 +253,6 @@ public class Main extends PApplet {
             fülleGitterMitSeed(gitter, (int) random(0, 299999999));
          }
          if (key == '4') {
-            // rule 4: standard Conway
             spawnCount = 2;
             despawnMin = 1;
             despawnMax = 2;
