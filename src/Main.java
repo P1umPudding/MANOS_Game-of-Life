@@ -3,6 +3,7 @@ import processing.core.*;
 public class Main extends PApplet {
    pixelanalyse pa;
    UILayout ui;
+   CurrentscreenToSvg svgExporter;
    boolean uiState = false;
 
    public void settings() {
@@ -19,7 +20,7 @@ public class Main extends PApplet {
    int breite = 10;
    boolean[][] gitter;
 
-   int sizeMultiplyer = 2;
+   int sizeMultiplyer = 1;
 
    public void setup() {
       textAlign(LEFT, BOTTOM);
@@ -32,6 +33,7 @@ public class Main extends PApplet {
       //fülleGitterMitSeed(gitter, 696867);
       ui = new UILayout(this);
       ui.setupColors();
+      svgExporter = new CurrentscreenToSvg(this);
 
    }
 
@@ -207,6 +209,9 @@ public class Main extends PApplet {
                pauseButton = true;
 
          }
+      }
+      if (key == 'e' || key == 'E') {
+         svgExporter.exportCurrentScreenToSvg();
       }
       if (key == ESC) {
          key = 0;
